@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FinanceTracker</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+	<head>
+		<title>FinanceTracker</title>
+		<%= csrf_meta_tags %>
+		<%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+	</head>
 
-  <body>
-    <% if notice %>
-      <p><%= notice %></p>
-    <% end %>
+	<body>
+		<%= render 'layouts/navbar' %>
+		<% if notice %>
+			<p><%= notice %></p>
+		<% end %>
 
-    <% if alert %>
-      <p><%= alert %></p>
-    <% end %>
-    <%= yield %>
-  </body>
+		<% if alert %>
+			<p><%= alert %></p>
+		<% end %>
+
+		<%= link_to 'Signout', destroy_user_session_path, method: :delete %>
+
+		<%= yield %>
+	</body>
 </html>

@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-custom-dark bg-custom-lite">
+	<%= link_to root_path, class: "navbar-brand", id: 'logo' do %>
+		<div class="logo">CFT</div>
+	<% end %>
+
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item"><a class="nav-link">Chatroom</a></li>
+			<li class="nav-item"><a class="nav-link">Messages</a></li>
+		</ul>
+
+		<ul class="navbar-nav ml-auto">
+			<li class="nav-item dropdown">
+				<%#= link_to logged_in? ? current_user.username : 'Guest', root_path, class: "nav-link dropdown-toggle", id: "navbarDropDown", role: "button", 'data-toggle': "dropdown", "aria-haspopup": 'true', 'aria-expanded': "false" %>
+
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<%# if logged_in? %>
+						<%#= link_to 'Logout', logout_path, method: :delete, class: "dropdown-item" %>
+
+					<%# else %>
+						<%#= link_to 'Login', login_path, class: "dropdown-item" %>
+						<a href="#" class="dropdown-item">Signup</a>
+					<%# end %>
+				</div>
+			</li>
+	</div>
+</nav>
