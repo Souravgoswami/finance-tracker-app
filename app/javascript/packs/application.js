@@ -20,3 +20,6 @@ document.addEventListener('turbolinks:load', function() {
 
 	$('[data-toggle="popover"]').popover()
 })
+
+import '../stylesheets/application.scss'
+import '@fortawesome/fontawesome-free/js/all'
