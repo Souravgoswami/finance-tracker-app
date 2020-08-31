@@ -1,0 +1,38 @@
+<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	<div class="centrify">
+		<div class="w-60 shadow rounded p-4">
+			<div class="form-group">
+				<%= f.label :email, class: 'display-block' do %>
+					Email
+					<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+				<% end %>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :password, class: 'display-block' do %>
+					Password
+					<%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+				<% end %>
+			</div>
+
+			<% if devise_mapping.rememberable? %>
+				<div class="form-group">
+					<%= f.check_box :remember_me %>
+					<%= f.label :remember_me %>
+				</div>
+			<% end %>
+
+			<div class="col-md-12 centrify">
+				<label class="btn-outline-success-animated" data-content="Log in">
+					<%= f.submit "", style: "display: none" %>
+				</label>
+			</div>
+
+			<div class="col-md-12" style="text-align: right">
+				<%= render "devise/shared/links" %>
+			</div>
+		</div>
+	</div>
+<% end %>
