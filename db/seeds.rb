@@ -1,7 +1,32 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'etc'
+
+ITEMS = 200
+NAME = (?a..?y).to_a.permutation
+FORK_PIDS = []
+PROCESSORS = Etc.nprocessors * 2
+
+time = Time.now
+ITEMS.times do |i|
+	if FORK_PIDS.length > PROCESSORS
+		Process.wait(FORK_PIDS.shift)
+		redo
+	else
+		elap = Time.now - time
+		est_rem = ITEMS.*(elap)./(i).-(elap).round(2)
+		print "\e[2K#{i}/#{ITEMS} | Elapsed #{elap.round(2)} s | Rem #{est_rem} s | Active #{FORK_PIDS.count}\r"
+		name = NAME.next.join.capitalize
+
+		FORK_PIDS << Process.fork do
+			begin
+				User.create!(username: name, email: "#{name}@fn.net", password: 'randomuser')
+			rescue ActiveRecord::RecordInvalid
+				puts $!.full_message
+			rescue Exception
+				sleep 0.1
+				retry
+			end
+		end
+	end
+end
+
+FORK_PIDS.each(&Process.method(:wait))
