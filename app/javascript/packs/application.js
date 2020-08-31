@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 require('jquery')
-window.$ = jquery
+window.$ = $
 
 import 'bootstrap'
 
