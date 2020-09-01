@@ -16,6 +16,7 @@
 		</ul>
 
 		<ul class="navbar-nav ml-auto">
+					<i class="fa fa-user" style="color: #fff"></i>
 					<% if logged_in? %>
 						<li class="nav-item dropdown">
 							<%= link_to logged_in? ? current_user.username : 'Guest', root_path, class: "nav-link dropdown-toggle", id: "navbarDropDown", role: "button", 'data-toggle': "dropdown", "aria-haspopup": 'true', 'aria-expanded': "false" %>

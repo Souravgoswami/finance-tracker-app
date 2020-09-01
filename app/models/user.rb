@@ -10,6 +10,8 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :validatable
 
   validates :username, uniqueness: { case_sensitive: false }, length: { maximum: 64 }
+  validates :first_name, uniqueness: { case_sensitive: false }, length: { minimum: 2, maximum: 32 }
+  validates :last_name, uniqueness: { case_sensitive: false }, length: { minimum: 2, maximum: 32 }
 
   def stock_already_tracked?(ticker_symbol)
     stocks.where(ticker: ticker_symbol.upcase).exists?
