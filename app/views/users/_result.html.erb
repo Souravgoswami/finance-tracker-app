@@ -1,11 +1,23 @@
 <%# TODO Integrate messages %>
 <div class="results-block">
 </div>
-
-<% if @stock %>
-	<div class="card card-header results-block">
-		<strong>Symbol: </strong><%= @stock.ticker %>
-		<strong>Name: </strong><%= @stock.name %>
-		<strong>Price: </strong><%= @stock.last_price %>
-	</div>
+<% unless @tracked_stocks.empty? %>
+	<table class="table table-bordered table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Symbol</th>
+				<th scope="col">Name</th>
+				<th scope="col">Last Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @tracked_stocks.each do |stock| %>
+				<tr>
+					<td><%= stock.ticker%></td>
+					<td><%= stock.name %></td>
+					<td><%= stock.last_price %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 <% end %>
