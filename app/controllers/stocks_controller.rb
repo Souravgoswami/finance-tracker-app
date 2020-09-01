@@ -1,7 +1,8 @@
 class StocksController < ApplicationController
 	def search
 		if params[:stock].present?
-			@stock = Stock.new_lookup(params[:stock])
+			@ticker_name = params[:stock].upcase
+			@stock = Stock.new_lookup(@ticker_name)
 			@tracked_stocks = current_user.stocks
 
 			if @stock
@@ -10,7 +11,7 @@ class StocksController < ApplicationController
 				end
 			else
 				respond_to do |f|
-					flash[:alert] = "#{params[:stock]} is not a valid symbol!"
+					# flash[:alert] =
 					f.js { render partial: 'users/result' }
 				end
 			end

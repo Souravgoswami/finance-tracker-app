@@ -6,10 +6,10 @@
 		<div class="form-group">
 			<div class="row">
 				<div class="input-group mb-3">
-					<%= text_field_tag :stock, params[:stock], placeholder: 'Stock ticker symbol', autofocus: true, class: 'form-control form-control-lg' %>
+					<%= text_field_tag :stock, params[:stock], placeholder: 'Stock ticker symbol', autofocus: true, class: 'form-control form-control-lg', 'max-length': '64' %>
 
 					<div class="input-group-append">
-						<%= button_tag type: :submit, class: 'btn btn-outline-primary' do %>
+						<%= button_tag type: :submit, class: 'btn btn-outline-primary', id: "searchTickerButton" do %>
 							<i class="fas fa-search-dollar fa-lg"></i>
 						<% end %>
 					</div>

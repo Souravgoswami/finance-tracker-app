@@ -95,6 +95,6 @@ const notifyMain = (notification_string, button_label, button_link) => {
 	}, LIFE)
 }
 
-window.notify = function(notification_string='', button_label=null, button_link=null) {
+window.notify = function(notification_string='', button_label='Ok', button_link=null) {
 	notifyMain(notification_string, button_label, button_link)
 }

@@ -1,1 +1,8 @@
-$('#results').html('<%= j render("users/result.html") %>')
+$('#searchTickerButton').attr('class', 'btn btn-outline-primary')
+$('#searchTickerButton').prop('disabled', false)
+
+<% unless @stock %>
+	notify("<%= @ticker_name %> is not a valid symbol!")
+<% else %>
+	$('#results').html('<%= j render("users/result.html") %>')
+<% end %>
