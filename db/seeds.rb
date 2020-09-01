@@ -18,7 +18,12 @@ ITEMS.times do |i|
 
 		FORK_PIDS << Process.fork do
 			begin
-				User.create!(username: name, email: "#{name}@fn.net", password: 'randomuser')
+				User.create!(
+					first_name: name[0...12],
+					last_name: name[12..-1],
+					email: "#{name}@fn.net",
+					password: 'randomuser',
+				)
 			rescue ActiveRecord::RecordInvalid
 				puts $!.full_message
 			rescue Exception
