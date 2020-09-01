@@ -2,6 +2,8 @@ class StocksController < ApplicationController
 	def search
 		if params[:stock].present?
 			@stock = Stock.new_lookup(params[:stock])
+			@tracked_stocks = current_user.stocks
+
 			if @stock
 				respond_to do |f|
 					f.js { render partial: 'users/result' }

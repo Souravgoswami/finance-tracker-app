@@ -10,4 +10,16 @@ class User < ApplicationRecord
   validates :username, presence: true,
     uniqueness: { case_sensitive: false },
     length: { minimum: 3, maximum: 64 }
+
+  def stock_already_tracked?(ticker_symbol)
+    stocks.where(ticker: ticker_symbol.upcase).exists?
+  end
+
+  def under_stock_limit?
+    stocks.count < 10
+  end
+
+  def can_track_stock?(ticker_symbol)
+    under_stock_limit? && !stock_already_tracked?(ticker_symbol.upcase)
+  end
 end
