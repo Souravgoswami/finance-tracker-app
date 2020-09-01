@@ -7,17 +7,13 @@
 
 		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+		<%= stylesheet_link_tag 'notify-send', media: 'all', 'data-turbolinks-track': 'reload' %>
+		<%= javascript_pack_tag 'notify-send', 'data-turbolinks-track': 'reload' %>
 	</head>
 
 	<body>
 		<%= render 'layouts/navbar' %>
-		<% if notice %>
-			<p><%= notice %></p>
-		<% end %>
-
-		<% if alert %>
-			<p><%= alert %></p>
-		<% end %>
+		<%= flash_notification_manager %>
 
 		<%= link_to 'Signout', destroy_user_session_path, method: :delete %>
 
