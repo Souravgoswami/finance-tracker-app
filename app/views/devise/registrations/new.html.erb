@@ -1,46 +1,75 @@
-<h2 class="centrify">Sign up</h2>
+<h2 class="centrify">Sign Up For FinanceTracker</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
 	<%= render "devise/shared/error_messages", resource: resource %>
 	<div class="centrify">
-		<div class="w-60 shadow rounded p-4">
-			<div class="field form-group">
-				<%= f.label :email, class: 'display-block' do %>
-					Email
-					<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
-				<% end %>
-			</div>
+		<div class="w-600 shadow rounded p-4">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Details</h4>
+					<div class="form-group">
+						<%= f.label :email, class: 'display-block' do %>
+							Email
+							<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control check-duplicate' %>
+							<div id="emailErrorMessages"></div>
+						<% end %>
+					</div>
 
-			<div class="field form-group">
-				<%= f.label :password, class: 'display-block' do %>
-					Password <% if @minimum_password_length %>
-						<em>(<%= @minimum_password_length %> characters minimum)</em>
+					<div class="form-group">
+						<%= f.label :first_name, class: 'display-block' do %>
+							First Name
+							<%= f.text_field :first_name, autofocus: false, class: 'form-control' %>
+						<% end %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :last_name, class: 'display-block' do %>
+							Last Name
+							<%= f.text_field :last_name, autofocus: false, class: 'form-control' %>
+						<% end %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :username, class: 'display-block' do %>
+							User Name (leave empty for auto-choose)
+							<%= f.text_field :username, autofocus: false, autocomplete: "username", class: 'form-control check-duplicate' %>
+							<div id="usernameErrorMessages"></div>
+						<% end %>
+					</div>
+
+					<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+						<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
 					<% end %>
 
-					<%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
-				<% end %>
-			</div>
+					<div class="form-group">
+						<%= f.label :password, class: 'display-block' do %>
+							Password <i>(leave blank if you don't want to change it)</i>
 
-			<div class="field form-group">
-				<%= f.label :password_confirmation, class: 'display-block' do %>
-					Confirm Password
-					<%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
-				<% end %>
-			</div>
+							<% if @minimum_password_length %>
+								<br>
+								<em>(<%= @minimum_password_length %> characters minimum)</em>
+							<% end %>
 
-			<div class="row">
-				<div class="col-md-12" style="text-align: center">
-					<div class="actions form-group">
-						<label class="btn-outline-danger-animated" data-content="Sign Up">
-							<%= f.submit "", style: 'display: none' %>
+							<%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+						<% end %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :password_confirmation, class: 'display-block' do %>
+							Password Confirmation
+							<%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+						<% end %>
+					</div>
+
+					<div class="centrify">
+						<label class="btn-outline-blue-animated" data-content="Sign Up">
+							<%= f.submit "", style: "display: none" %>
 						</label>
 					</div>
 				</div>
-
-				<div class="col-md-12">
-					<%= render "devise/shared/links" %>
-				</div>
 			</div>
+
+			<%= link_to "", :back, class: 'btn-outline-pink-animated', 'data-content': 'Back' %>
 		</div>
 	</div>
 <% end %>
