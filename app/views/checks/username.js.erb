@@ -1,5 +1,7 @@
-<% if user_exists?(:username, @username) %>
-	$('#usernameErrorMessages').html("Username already exists")
-<% else %>
-	$('#usernameErrorMessages').html("")
+<% if current_user && current_user.username != @username %>
+	<% if user_exists?(:username, @username) %>
+		$('#usernameErrorMessages').html("Username already exists")
+	<% else %>
+		$('#usernameErrorMessages').html("")
+	<% end %>
 <% end %>

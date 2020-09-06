@@ -10,7 +10,8 @@
 					<div class="form-group">
 						<%= f.label :email, class: 'display-block' do %>
 							Email
-							<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+							<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control check-duplicate' %>
+							<div id="emailErrorMessages"></div>
 						<% end %>
 					</div>
 
@@ -25,6 +26,14 @@
 						<%= f.label :last_name, class: 'display-block' do %>
 							Last Name
 							<%= f.text_field :last_name, autofocus: false, autocomplete: "email", class: 'form-control' %>
+						<% end %>
+					</div>
+
+					<div class="form-group">
+						<%= f.label :username, class: 'display-block' do %>
+							User Name (leave empty for auto-choose)
+							<%= f.text_field :username, autofocus: false, autocomplete: "username", class: 'form-control check-duplicate' %>
+							<div id="usernameErrorMessages"></div>
 						<% end %>
 					</div>
 

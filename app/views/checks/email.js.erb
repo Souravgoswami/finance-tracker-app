@@ -1,5 +1,7 @@
-<% if user_exists?(:email, @email) %>
-	$('#emailErrorMessages').html("Email already exists")
-<% else %>
-	$('#emailErrorMessages').html("")
+<% if current_user && current_user.email != @email %>
+	<% if user_exists?(:email, @email) %>
+		$('#emailErrorMessages').html("Email already exists")
+	<% else %>
+		$('#emailErrorMessages').html("")
+	<% end %>
 <% end %>
