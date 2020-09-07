@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'my_friends', to: 'users#my_friends'
   get 'check_username', to: 'checks#username'
   get 'check_email', to: 'checks#email'
   resources :user_stocks, only: %i[create destroy]
