@@ -16,7 +16,6 @@
 <% end %>
 
 <div id="listFriends">
-<% unless @friends.empty? %>
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
@@ -32,8 +31,8 @@
 			<% end %>
 		</tbody>
 	</table>
-<% else %>
-	You have no friends
-<% end %>
 
+	<% if @friends.empty? %>
+		<span id="no-friends">You have no friends</span>
+	<% end %>
 </div>

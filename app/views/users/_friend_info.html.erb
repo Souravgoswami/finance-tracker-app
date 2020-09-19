@@ -1,5 +1,5 @@
 <tr>
-	<td><%= friend.username%></td>
+	<td><%= link_to friend.username, user_path(friend.id) %></td>
 	<td><%= friend.first_name %></td>
 	<td><%= friend.last_name %></td>
 	<td>

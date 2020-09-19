@@ -1,0 +1,42 @@
+<h2>User Details</h2>
+
+<div id="listFriends">
+	<table class="table table-borderless table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Username</th>
+				<th scope="col">First Name</th>
+				<th scope="col">Last Name</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<td><%= link_to @user.username, user_path(@user.id) %></td>
+			<td><%= @user.first_name %></td>
+			<td><%= @user.last_name %></td>
+			<% if current_user.not_friends_with?(@user.id) %>
+				<td class="td-word-wrap" id="btn-<%= @user.id %>">
+					<%= link_to friendships_path(friend: @user), method: :post, remote: true, class: 'btn btn-outline-primary icon-hover' do %>
+						<%= image_tag 'add.svg', class: 'icon24 hover' %>
+					<% end %>
+				</td>
+			<% else %>
+				<td class="td-word-wrap">
+				<%= link_to friendship_path(@user), method: :delete, data: {confirm: 'Are you sure?' }, class: 'btn btn-outline-danger icon-hover' do %>
+					<%= image_tag 'subtract.svg', class: 'icon24 hover' %>
+				<% end %>
+				</td>
+			<% end %>
+		</tbody>
+	</table>
+
+
+	<% unless @tracked_stocks.empty? %>
+		<div id="results">
+			<%= render 'users/result' %>
+		</div>
+	<% else %>
+		This user is not tracking any stocks
+	<% end %>
+</div>

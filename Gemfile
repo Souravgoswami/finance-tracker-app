@@ -31,7 +31,5 @@ group :production do
 end
 
 gem "devise", "~> 4.7"
-
 gem "devise-bootstrap-views", "~> 1.1"
-
 gem "iex-ruby-client", "~> 1.1"

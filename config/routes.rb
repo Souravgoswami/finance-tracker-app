@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   devise_for :users
   get 'welcome/index'
   root to: 'welcome#index'
+  get 'users/:id', to: 'users#show', as: 'user'
 end
