@@ -1,14 +1,5 @@
 <% if @friends %>
 	<table class="table">
-		<thead class="thead-dark">
-			<tr>
-				<th class="bg-primary">Username</th>
-				<th class="bg-primary">First Name</th>
-				<th class="bg-primary">Last Name</th>
-				<th class="bg-primary">Email</th>
-			</tr>
-		</thead>
-
 		<tbody>
 			<% @friends.each do |friend| %>
 				<tr>
@@ -16,7 +7,19 @@
 					<td class="td-word-wrap"><%= friend.first_name %></td>
 					<td class="td-word-wrap"><%= friend.last_name %></td>
 					<td class="td-word-wrap"><%= friend.email %></td>
-				<tr>
+
+					<% if current_user.not_friends_with?(friend.id) %>
+						<td class="td-word-wrap">
+							<%= link_to friendship_path(friend), class: 'btn btn-outline-primary icon-hover' do %>
+								<%= image_tag 'add.svg', class: 'icon24 hover' %>
+							<% end %>
+						</td>
+					<% else %>
+						<td class="td-word-wrap">
+							<%= image_tag 'check.svg', class: 'icon24' %>
+						</td>
+					<% end %>
+				</tr>
 			<% end %>
 		</tbody>
 <% end %>

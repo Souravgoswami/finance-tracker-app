@@ -42,6 +42,10 @@ class User < ApplicationRecord
 		users.reject { |u| u.id == id }
 	end
 
+	def not_friends_with?(user_id)
+		!self.friends.any? { |f| f.id == user_id }
+	end
+
 	private
 	def generate_username_if_empty
 		unless username

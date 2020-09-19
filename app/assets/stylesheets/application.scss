@@ -62,3 +62,12 @@
 	word-wrap: break-word ;
 	max-width: 120px !important ;
 }
+
+.icon24 {
+	width: 24px ;
+	transition: all 0.25s ease ;
+}
+
+.icon-hover:hover .hover {
+	filter: brightness(0) invert(1) ;
+}
