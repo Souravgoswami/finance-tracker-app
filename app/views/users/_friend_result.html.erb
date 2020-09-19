@@ -1,0 +1,22 @@
+<% if @friends %>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th class="bg-primary">Username</th>
+				<th class="bg-primary">First Name</th>
+				<th class="bg-primary">Last Name</th>
+				<th class="bg-primary">Email</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<% @friends.each do |friend| %>
+				<tr>
+					<td class="td-word-wrap"><%= friend.username %></td>
+					<td class="td-word-wrap"><%= friend.first_name %></td>
+					<td class="td-word-wrap"><%= friend.last_name %></td>
+					<td class="td-word-wrap"><%= friend.email %></td>
+				<tr>
+			<% end %>
+		</tbody>
+<% end %>
