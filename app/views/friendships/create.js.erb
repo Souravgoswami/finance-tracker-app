@@ -1,0 +1,3 @@
+$("#btn-<%= @friend.id %>").html(`<%= image_tag('check.svg', class: 'icon24') %>`)
+notify(`You are now following <%= @friend.username %>`)
+$('#friendList').append(`<%= render 'users/friend_info', friend: @friend %>`)

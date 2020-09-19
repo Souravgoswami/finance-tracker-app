@@ -1,0 +1,10 @@
+<tr>
+	<td><%= friend.username%></td>
+	<td><%= friend.first_name %></td>
+	<td><%= friend.last_name %></td>
+	<td>
+		<%= link_to friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?' }, class: 'btn btn-outline-danger icon-hover' do %>
+			<%= image_tag 'subtract.svg', class: 'icon24 hover' %>
+		<% end %>
+	</td>
+</tr>

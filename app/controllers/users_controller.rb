@@ -9,11 +9,9 @@ class UsersController < ApplicationController
 
 	def search
 		if params[:friend].present?
-			@friends = User.search(params[:friend])
-			@friends = current_user.except_current_user(@friends)
+			@friends = current_user.except_current_user(User.search(params[:friend]))
 
 			if @friends
-				# render 'users/_friend_result'
 				respond_to do |f|
 					f.js { render partial: 'users/friend_result' }
 				end
@@ -25,11 +23,10 @@ class UsersController < ApplicationController
 				end
 			end
 		else
-			flash.now[:alert] = 'Please enter an username or email to search'
+			flash.now[:alert] = 'Please enter a username or email to search'
 			respond_to do |f|
 				f.js { render partial: 'users/friend_result' }
 			end
-			# render json: params[:friend].to_json
 		end
 	end
 end

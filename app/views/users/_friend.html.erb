@@ -1,44 +1,39 @@
-<% unless @friends.empty? %>
-	<%= form_tag search_friend_path, method: :get, remote: true do %>
-		<div class="form-group">
-			<div class="row">
-				<div class="input-group mb-3">
-					<%= text_field_tag :friend, params[:friend], placeholder: 'Search friends', autofocus: true, class: 'form-control form-control-lg', 'max-length': '1024' %>
+<%= form_tag search_friend_path, method: :get, remote: true do %>
+	<div class="form-group">
+		<div class="row">
+			<div class="input-group mb-3">
+				<%= text_field_tag :friend, params[:friend], placeholder: 'Search friends', autofocus: true, class: 'form-control form-control-lg', 'max-length': '1024' %>
 
-					<div class="input-group-append">
-						<%= button_tag type: :submit, class: 'btn btn-outline-primary', id: "searchFriendButton" do %>
-							<i class="fas fa-search-dollar fa-lg"></i>
-						<% end %>
-					</div>
+				<div class="input-group-append">
+					<%= button_tag type: :submit, class: 'btn btn-outline-primary', id: "searchFriendButton" do %>
+						<i class="fas fa-search-dollar fa-lg"></i>
+					<% end %>
 				</div>
 			</div>
 		</div>
-	<% end %>
-
+	</div>
 	<div id="searchFriendResults"></div>
+<% end %>
 
+<div id="listFriends">
+<% unless @friends.empty? %>
 	<table class="table table-bordered table-hover">
 		<thead>
 			<tr>
-				<th scope="col">Email</th>
+				<th scope="col">Username</th>
 				<th scope="col">First Name</th>
 				<th scope="col">Last Name</th>
 				<th scope="col">Actions</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="friendList">
 			<% @friends.each do |friend| %>
-				<tr>
-					<td><%= friend.email%></td>
-					<td><%= friend.first_name %></td>
-					<td><%= friend.last_name %></td>
-					<td>
-						<%= link_to friendship_path(friend), method: :delete, data: {confirm: 'Are you sure?' }, class: 'btn btn-outline-danger icon-hover' do %>
-							<%= image_tag 'subtract.svg', class: 'icon24 hover' %>
-						<% end %>
-					</td>
-				</tr>
+				<%= render 'friend_info', friend: friend %>
 			<% end %>
 		</tbody>
 	</table>
+<% else %>
+	You have no friends
 <% end %>
+
+</div>
