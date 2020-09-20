@@ -4,6 +4,7 @@ class StocksController < ApplicationController
 			@ticker_name = params[:stock].upcase
 			@stock = Stock.new_lookup(@ticker_name)
 			@tracked_stocks = current_user.stocks
+			@user = current_user
 
 			if @stock
 				respond_to do |f|

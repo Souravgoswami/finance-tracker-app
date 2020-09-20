@@ -1,6 +1,6 @@
 class UserStocksController < ApplicationController
 	def create
-		stock = Stock.check_db(params[:ticker])
+		stock = Stock.check_db(params[:ticker], current_user)
 		unless stock
 			stock = Stock.new_lookup(params[:ticker])
 			if stock.save

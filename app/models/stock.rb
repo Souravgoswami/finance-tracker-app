@@ -27,7 +27,7 @@ class Stock < ApplicationRecord
 		end
 	end
 
-	def self.check_db(ticker_symbol)
-		where(ticker: ticker_symbol.upcase).any?
+	def self.check_db(ticker_symbol, current_user)
+		current_user.stocks.where(ticker: ticker_symbol.upcase).any?
 	end
 end

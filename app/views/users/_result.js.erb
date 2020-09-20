@@ -4,5 +4,5 @@ $('#searchTickerButton').prop('disabled', false)
 <% unless @stock %>
 	notify("<%= @ticker_name %> is not a valid symbol!")
 <% else %>
-	$('#results').html('<%= j render("users/result.html") %>')
+	$('#results').html('<%= j render("users/result.html", user: @user) %>')
 <% end %>

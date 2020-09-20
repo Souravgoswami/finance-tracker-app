@@ -2,6 +2,9 @@ class FriendshipsController < ApplicationController
 	def create
 		@friend = User.find(params[:friend])
 		current_user.friendships.build(friend_id: @friend.id)
+		# @stock = Stock.new_lookup(@ticker_name)
+		# @tracked_stocks = current_user.stocks
+
 
 		if current_user.save
 			flash[:notice] = "You are now following #{@friend.username}"
