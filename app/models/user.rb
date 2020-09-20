@@ -18,6 +18,12 @@ class User < ApplicationRecord
 	validates :first_name, length: { minimum: 2, maximum: 32 }
 	validates :last_name, length: { minimum: 2, maximum: 32 }
 
+	def self.search(str)
+		User.where('LOWER(username) LIKE ?', "%#{str.downcase}%").+(
+			User.where('LOWER(email) LIKE ?', "%#{str.downcase}%")
+		).uniq
+	end
+
 	def stock_already_tracked?(ticker_symbol)
 		stocks.where(ticker: ticker_symbol.upcase).exists?
 	end
@@ -30,13 +36,6 @@ class User < ApplicationRecord
 		under_stock_limit? && !stock_already_tracked?(ticker_symbol.upcase)
 	end
 
-	def self.search(str)
-		User.where('LOWER(username) LIKE ?', "%#{str.downcase}%").+(
-			User.where('LOWER(email) LIKE ?', "%#{str.downcase}%")
-		).uniq
-	end
-
-
 	def except_current_user(users)
 		id = self.id
 		users.reject { |u| u.id == id }
@@ -44,6 +43,12 @@ class User < ApplicationRecord
 
 	def not_friends_with?(user_id)
 		!self.friends.any? { |f| f.id == user_id }
+	end
+
+	def refresh_stocks
+		self.stocks.each do |x|
+			x.update(last_price: Stock.new_lookup(x.ticker).last_price)
+		end
 	end
 
 	private

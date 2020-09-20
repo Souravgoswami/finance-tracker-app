@@ -18,4 +18,9 @@ class UserStocksController < ApplicationController
 		flash[:notice] = "#{stock.ticker} was successfully removed from portfolio"
 		redirect_to my_portfolio_path
 	end
+
+	def refresh
+		current_user.refresh_stocks
+		redirect_to my_portfolio_path
+	end
 end

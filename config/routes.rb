@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root to: 'welcome#index'
   get 'users/:id', to: 'users#show', as: 'user'
+  post 'refresh_user_stock', to: 'user_stocks#refresh'
 end

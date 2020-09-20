@@ -19,6 +19,10 @@
 	<% end %>
 </div>
 
+<div class="centrify">
+	<%= link_to '', refresh_user_stock_path, method: :post, class: 'btn-outline-warning-animated', 'data-content': 'Refresh All' %>
+</div>
+
 <div id="results">
 	<%= render 'users/result' %>
 </div>
